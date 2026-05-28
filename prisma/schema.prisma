@@ -1,0 +1,87 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           String      @id @default(cuid())
+  email        String      @unique
+  password     String
+  name         String
+  restaurantId String?
+  restaurant   Restaurant? @relation(fields: [restaurantId], references: [id])
+  role         String      @default("owner")
+  createdAt    DateTime    @default(now())
+  updatedAt    DateTime    @updatedAt
+}
+
+model Restaurant {
+  id                   String           @id @default(cuid())
+  name                 String
+  slug                 String           @unique
+  email                String
+  phone                String?
+  address              String?
+  timezone             String           @default("Europe/Madrid")
+  config               Json             @default("{}")
+  closedDays           Json             @default("[]")
+  stripeCustomerId     String?          @unique
+  stripeSubscriptionId String?          @unique
+  subscriptionStatus   String           @default("incomplete")
+  trialEndsAt          DateTime?
+  trialReminderSentAt  DateTime?
+  trialExpiredSentAt   DateTime?
+  users                User[]
+  reservations         Reservation[]
+  invoices             InvoiceRequest[]
+  createdAt            DateTime         @default(now())
+  updatedAt            DateTime         @updatedAt
+}
+
+model InvoiceRequest {
+  id           String     @id @default(cuid())
+  restaurantId String
+  restaurant   Restaurant @relation(fields: [restaurantId], references: [id])
+  reservationId String?
+  customerName  String
+  customerEmail String
+  cif           String
+  businessName  String
+  address       String
+  amount        String?
+  pdfUrl        String?
+  status        String     @default("pending")
+  createdAt     DateTime   @default(now())
+  updatedAt     DateTime   @updatedAt
+}
+
+model ProcessedStripeEvent {
+  id          String   @id
+  type        String
+  processedAt DateTime @default(now())
+}
+
+model Reservation {
+  id           String     @id @default(cuid())
+  restaurantId String
+  restaurant   Restaurant @relation(fields: [restaurantId], references: [id])
+  customerName  String
+  customerEmail String
+  customerPhone String?
+  date          DateTime
+  time          String
+  partySize     Int
+  source        String     @default("widget")
+  status        String     @default("confirmed")
+  notes         String?
+  cancelledAt   DateTime?
+  reminderSentAt DateTime?
+  createdAt     DateTime   @default(now())
+  updatedAt     DateTime   @updatedAt
+
+  @@index([restaurantId, date])
+}
