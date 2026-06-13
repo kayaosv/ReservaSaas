@@ -2,10 +2,10 @@ import Link from "next/link"
 import { getSubscriptionBannerState } from "@/lib/subscription"
 
 const TONE_CLASSES = {
-  blue: "bg-blue-50 text-blue-800 border-blue-200",
+  blue: "bg-brand-50 text-brand-800 border-brand-200",
   amber: "bg-amber-50 text-amber-800 border-amber-200",
   red: "bg-red-50 text-red-800 border-red-200",
-  gray: "bg-gray-100 text-gray-700 border-gray-200",
+  gray: "bg-slate-100 text-slate-700 border-slate-200",
 }
 
 export const SubscriptionBanner = ({ restaurant }) => {

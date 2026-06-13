@@ -46,12 +46,12 @@ export default async function PublicRestaurantPage({ params }) {
   const maxPartySize = Number(cfg.maxPartySize) || 10
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <header className="bg-white border-b border-gray-200 px-6 py-4">
+    <div className="min-h-screen bg-slate-50">
+      <header className="bg-white border-b border-slate-200 px-6 py-4">
         <div className="max-w-2xl mx-auto">
-          <h1 className="text-xl font-bold text-gray-900">{restaurant.name}</h1>
+          <h1 className="text-xl font-bold text-slate-900">{restaurant.name}</h1>
           {(restaurant.address || restaurant.phone) && (
-            <p className="text-sm text-gray-500 mt-1">
+            <p className="text-sm text-slate-500 mt-1">
               {restaurant.address}
               {restaurant.address && restaurant.phone && " · "}
               {restaurant.phone}
@@ -64,8 +64,9 @@ export default async function PublicRestaurantPage({ params }) {
         <BookingFlow slug={restaurant.slug} maxPartySize={maxPartySize} />
       </main>
 
-      <footer className="text-center text-xs text-gray-400 py-6">
-        Reservas gestionadas con RestoBook
+      <footer className="text-center text-xs text-slate-400 py-6">
+        Reservas gestionadas con{" "}
+        <a href="/" className="font-medium text-slate-500 hover:text-brand-600">RestoBook</a>
       </footer>
     </div>
   )

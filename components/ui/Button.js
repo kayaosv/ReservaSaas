@@ -1,17 +1,24 @@
 "use client"
 
 const variants = {
-  primary: "bg-gray-900 text-white hover:bg-gray-700 disabled:bg-gray-300",
-  secondary: "bg-white text-gray-900 border border-gray-300 hover:bg-gray-50 disabled:opacity-50",
-  ghost: "text-gray-600 hover:text-gray-900 hover:bg-gray-100 disabled:opacity-50",
+  primary: "bg-brand-600 text-white hover:bg-brand-700 disabled:bg-brand-300 shadow-sm",
+  secondary: "bg-white text-slate-900 border border-slate-300 hover:bg-slate-50 disabled:opacity-50",
+  ghost: "text-slate-600 hover:text-slate-900 hover:bg-slate-100 disabled:opacity-50",
+  dark: "bg-slate-900 text-white hover:bg-slate-800 disabled:bg-slate-400 shadow-sm",
   danger: "bg-red-600 text-white hover:bg-red-700 disabled:bg-red-300",
 }
 
-export const Button = ({ children, variant = "primary", className = "", disabled, loading, ...props }) => {
+const sizes = {
+  sm: "px-3 py-1.5 text-xs",
+  md: "px-4 py-2 text-sm",
+  lg: "px-6 py-3 text-base",
+}
+
+export const Button = ({ children, variant = "primary", size = "md", className = "", disabled, loading, ...props }) => {
   return (
     <button
       disabled={disabled || loading}
-      className={`inline-flex items-center justify-center px-4 py-2 text-sm font-medium rounded-md transition-colors cursor-pointer ${variants[variant]} ${className}`}
+      className={`inline-flex items-center justify-center font-medium rounded-lg transition-colors cursor-pointer disabled:cursor-not-allowed ${sizes[size]} ${variants[variant]} ${className}`}
       {...props}
     >
       {loading ? (

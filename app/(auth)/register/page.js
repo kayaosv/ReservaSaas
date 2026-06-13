@@ -25,15 +25,18 @@ export default function RegisterPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4">
+    <div className="min-h-screen bg-slate-50 flex items-center justify-center p-4">
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
-          <h1 className="text-2xl font-bold text-gray-900">RestoBook</h1>
-          <p className="text-gray-500 mt-1 text-sm">Crea tu cuenta — 14 días gratis</p>
+          <Link href="/" className="inline-flex items-center gap-2">
+            <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-brand-600 text-sm font-bold text-white">R</span>
+            <span className="text-2xl font-bold tracking-tight text-slate-900">RestoBook</span>
+          </Link>
+          <p className="text-slate-500 mt-2 text-sm">Crea tu cuenta — 14 días gratis</p>
         </div>
 
-        <div className="bg-white border border-gray-200 rounded-lg p-8">
-          <h2 className="text-lg font-semibold text-gray-900 mb-6">Crear cuenta</h2>
+        <div className="bg-white border border-slate-200 rounded-xl shadow-sm p-8">
+          <h2 className="text-lg font-semibold text-slate-900 mb-6">Crear cuenta</h2>
 
           <form onSubmit={handleSubmit} className="space-y-4">
             <Input
@@ -75,15 +78,15 @@ export default function RegisterPage() {
             </Button>
           </form>
 
-          <p className="text-center text-sm text-gray-500 mt-6">
+          <p className="text-center text-sm text-slate-500 mt-6">
             ¿Ya tienes cuenta?{" "}
-            <Link href="/login" className="text-gray-900 font-medium hover:underline">
+            <Link href="/login" className="text-brand-700 font-medium hover:underline">
               Inicia sesión
             </Link>
           </p>
         </div>
 
-        <p className="text-center text-xs text-gray-400 mt-4">
+        <p className="text-center text-xs text-slate-400 mt-4">
           Al crear una cuenta aceptas nuestros términos de servicio
         </p>
       </div>

@@ -95,20 +95,20 @@ export const BookingFlow = ({ slug, maxPartySize = 10 }) => {
 
   if (step === 4 && confirmation) {
     return (
-      <div className="bg-white border border-gray-200 rounded-lg p-8 text-center">
+      <div className="bg-white border border-slate-200 rounded-xl shadow-sm p-8 text-center">
         <p className="text-4xl mb-3">✅</p>
-        <h2 className="text-lg font-bold text-gray-900 mb-2">¡Reserva confirmada!</h2>
-        <p className="text-sm text-gray-600 mb-4">
+        <h2 className="text-lg font-bold text-slate-900 mb-2">¡Reserva confirmada!</h2>
+        <p className="text-sm text-slate-600 mb-4">
           Te esperamos el <strong>{date}</strong> a las <strong>{confirmation.time}</strong> para{" "}
           <strong>{confirmation.partySize}</strong> {confirmation.partySize === 1 ? "persona" : "personas"}.
         </p>
-        <p className="text-xs text-gray-400">Código de reserva: {confirmation.id}</p>
+        <p className="text-xs text-slate-400">Código de reserva: {confirmation.id}</p>
       </div>
     )
   }
 
   return (
-    <div className="bg-white border border-gray-200 rounded-lg p-6">
+    <div className="bg-white border border-slate-200 rounded-xl shadow-sm p-6">
       <Stepper step={step} />
 
       {step === 1 && (
@@ -151,8 +151,8 @@ export const BookingFlow = ({ slug, maxPartySize = 10 }) => {
                   className={`py-2 rounded-md text-sm font-medium border transition-colors
                     ${
                       s.available
-                        ? "border-gray-300 hover:border-gray-900 hover:bg-gray-900 hover:text-white"
-                        : "border-gray-200 text-gray-300 cursor-not-allowed bg-gray-50"
+                        ? "border-slate-300 hover:border-brand-600 hover:bg-brand-600 hover:text-white"
+                        : "border-slate-200 text-slate-300 cursor-not-allowed bg-slate-50"
                     }`}
                 >
                   {s.time}
@@ -188,10 +188,10 @@ export const BookingFlow = ({ slug, maxPartySize = 10 }) => {
                     key={n}
                     type="button"
                     onClick={() => setPartySize(n)}
-                    className={`w-10 h-10 rounded-md text-sm font-medium border ${
+                    className={`w-10 h-10 rounded-md text-sm font-medium border transition-colors ${
                       partySize === n
-                        ? "bg-gray-900 text-white border-gray-900"
-                        : "border-gray-300 hover:border-gray-500"
+                        ? "bg-brand-600 text-white border-brand-600"
+                        : "border-slate-300 hover:border-brand-500"
                     }`}
                   >
                     {n}
@@ -252,11 +252,11 @@ const Stepper = ({ step }) => (
       <div key={s} className="flex items-center gap-2">
         <div
           className={`w-6 h-6 rounded-full flex items-center justify-center text-xs font-medium
-            ${s === step ? "bg-gray-900 text-white" : s < step ? "bg-green-500 text-white" : "bg-gray-200 text-gray-500"}`}
+            ${s === step ? "bg-brand-600 text-white" : s < step ? "bg-brand-500 text-white" : "bg-slate-200 text-slate-500"}`}
         >
           {s < step ? "✓" : s}
         </div>
-        {s < 3 && <div className={`w-8 h-0.5 ${s < step ? "bg-green-500" : "bg-gray-200"}`} />}
+        {s < 3 && <div className={`w-8 h-0.5 ${s < step ? "bg-brand-500" : "bg-slate-200"}`} />}
       </div>
     ))}
   </div>

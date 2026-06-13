@@ -4,6 +4,7 @@ import Link from "next/link"
 import { prisma } from "@/lib/prisma"
 import { SignOutButton } from "@/components/SignOutButton"
 import { SubscriptionBanner } from "@/components/SubscriptionBanner"
+import { DashboardNav } from "@/components/DashboardNav"
 
 export default async function DashboardLayout({ children }) {
   const session = await auth()
@@ -17,22 +18,19 @@ export default async function DashboardLayout({ children }) {
   })
 
   return (
-    <div className="min-h-screen bg-gray-50 flex">
-      <aside className="w-56 bg-white border-r border-gray-200 flex flex-col">
-        <div className="px-5 py-4 border-b border-gray-200">
-          <span className="font-bold text-gray-900">RestoBook</span>
+    <div className="min-h-screen bg-slate-50 flex">
+      <aside className="w-56 bg-white border-r border-slate-200 flex flex-col">
+        <div className="px-5 py-4 border-b border-slate-200">
+          <Link href="/dashboard/hoy" className="flex items-center gap-2">
+            <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-brand-600 text-xs font-bold text-white">R</span>
+            <span className="font-bold tracking-tight text-slate-900">RestoBook</span>
+          </Link>
         </div>
 
-        <nav className="flex-1 py-4 px-3 space-y-1">
-          <NavLink href="/dashboard/hoy">Hoy</NavLink>
-          <NavLink href="/dashboard/analytics">Analytics</NavLink>
-          <NavLink href="/dashboard/reservas">Reservas</NavLink>
-          <NavLink href="/dashboard/facturas">Facturas</NavLink>
-          <NavLink href="/dashboard/ajustes">Ajustes</NavLink>
-        </nav>
+        <DashboardNav />
 
-        <div className="px-3 py-4 border-t border-gray-200">
-          <p className="text-xs text-gray-500 mb-2 px-2 truncate">{session.user.email}</p>
+        <div className="px-3 py-4 border-t border-slate-200">
+          <p className="text-xs text-slate-500 mb-2 px-2 truncate">{session.user.email}</p>
           <SignOutButton />
         </div>
       </aside>
@@ -44,12 +42,3 @@ export default async function DashboardLayout({ children }) {
     </div>
   )
 }
-
-const NavLink = ({ href, children }) => (
-  <Link
-    href={href}
-    className="block px-3 py-2 text-sm text-gray-700 rounded-md hover:bg-gray-100 hover:text-gray-900 transition-colors"
-  >
-    {children}
-  </Link>
-)

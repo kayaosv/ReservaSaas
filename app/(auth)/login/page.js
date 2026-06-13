@@ -25,15 +25,18 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4">
+    <div className="min-h-screen bg-slate-50 flex items-center justify-center p-4">
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
-          <h1 className="text-2xl font-bold text-gray-900">RestoBook</h1>
-          <p className="text-gray-500 mt-1 text-sm">Panel de gestión de reservas</p>
+          <Link href="/" className="inline-flex items-center gap-2">
+            <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-brand-600 text-sm font-bold text-white">R</span>
+            <span className="text-2xl font-bold tracking-tight text-slate-900">RestoBook</span>
+          </Link>
+          <p className="text-slate-500 mt-2 text-sm">Panel de gestión de reservas</p>
         </div>
 
-        <div className="bg-white border border-gray-200 rounded-lg p-8">
-          <h2 className="text-lg font-semibold text-gray-900 mb-6">Iniciar sesión</h2>
+        <div className="bg-white border border-slate-200 rounded-xl shadow-sm p-8">
+          <h2 className="text-lg font-semibold text-slate-900 mb-6">Iniciar sesión</h2>
 
           <form onSubmit={handleSubmit} className="space-y-4">
             <Input
@@ -66,9 +69,9 @@ export default function LoginPage() {
             </Button>
           </form>
 
-          <p className="text-center text-sm text-gray-500 mt-6">
+          <p className="text-center text-sm text-slate-500 mt-6">
             ¿No tienes cuenta?{" "}
-            <Link href="/register" className="text-gray-900 font-medium hover:underline">
+            <Link href="/register" className="text-brand-700 font-medium hover:underline">
               Regístrate gratis
             </Link>
           </p>

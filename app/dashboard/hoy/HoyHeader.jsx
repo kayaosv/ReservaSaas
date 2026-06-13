@@ -10,8 +10,8 @@ export const HoyHeader = ({ dateLabel, activeCount, defaultDate }) => {
     <>
       <div className="mb-6 flex items-start justify-between gap-4">
         <div>
-          <h1 className="text-xl font-bold text-gray-900 capitalize">{dateLabel}</h1>
-          <p className="text-sm text-gray-500">
+          <h1 className="text-xl font-bold text-slate-900 capitalize">{dateLabel}</h1>
+          <p className="text-sm text-slate-500">
             {activeCount} {activeCount === 1 ? "reserva" : "reservas"} hoy
           </p>
         </div>
