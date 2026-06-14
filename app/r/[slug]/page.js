@@ -1,13 +1,29 @@
+import { cache } from "react"
 import { notFound } from "next/navigation"
 import { prisma } from "@/lib/prisma"
 import { BookingFlow } from "./BookingFlow"
 
+// Una sola consulta por request: generateMetadata y la página comparten este
+// resultado gracias a cache() (evita 2 queries concurrentes contra el pooler).
+const getRestaurant = cache((slug) =>
+  prisma.restaurant.findUnique({
+    where: { slug },
+    select: {
+      id: true,
+      name: true,
+      slug: true,
+      address: true,
+      phone: true,
+      timezone: true,
+      config: true,
+      closedDays: true,
+    },
+  })
+)
+
 export const generateMetadata = async ({ params }) => {
   const { slug } = await params
-  const restaurant = await prisma.restaurant.findUnique({
-    where: { slug },
-    select: { name: true, address: true },
-  })
+  const restaurant = await getRestaurant(slug)
   if (!restaurant) return { title: "Restaurante no encontrado" }
 
   const title = `Reservar en ${restaurant.name}`
@@ -26,19 +42,7 @@ export const generateMetadata = async ({ params }) => {
 export default async function PublicRestaurantPage({ params }) {
   const { slug } = await params
 
-  const restaurant = await prisma.restaurant.findUnique({
-    where: { slug },
-    select: {
-      id: true,
-      name: true,
-      slug: true,
-      address: true,
-      phone: true,
-      timezone: true,
-      config: true,
-      closedDays: true,
-    },
-  })
+  const restaurant = await getRestaurant(slug)
 
   if (!restaurant) notFound()
 
