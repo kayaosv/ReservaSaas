@@ -3,8 +3,9 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider  = "postgresql"
+  url       = env("DATABASE_URL") // pooler (6543, ?pgbouncer=true) — runtime serverless
+  directUrl = env("DIRECT_URL")   // conexión directa (5432) — migraciones
 }
 
 model User {
